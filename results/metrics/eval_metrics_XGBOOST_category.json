@@ -1,0 +1,78 @@
+{
+    "model_name": "XGBOOST",
+    "task_name": "category",
+    "test_samples": 16598,
+    "accuracy": 0.9551,
+    "weighted_precision": 0.9556,
+    "weighted_recall": 0.9551,
+    "weighted_f1": 0.9547,
+    "macro_precision": 0.9084,
+    "macro_recall": 0.8746,
+    "macro_f1": 0.8886,
+    "classification_report": {
+        "Benign": {
+            "precision": 0.8442477876106195,
+            "recall": 0.795,
+            "f1-score": 0.8188841201716738,
+            "support": 600.0
+        },
+        "Brute_Force": {
+            "precision": 0.9224137931034483,
+            "recall": 0.670846394984326,
+            "f1-score": 0.7767695099818511,
+            "support": 319.0
+        },
+        "DDoS": {
+            "precision": 0.9995833911956673,
+            "recall": 0.9997222222222222,
+            "f1-score": 0.9996528018887577,
+            "support": 7200.0
+        },
+        "DoS": {
+            "precision": 0.9995829858215179,
+            "recall": 0.99875,
+            "f1-score": 0.9991663192997082,
+            "support": 2400.0
+        },
+        "Mirai": {
+            "precision": 1.0,
+            "recall": 0.9994444444444445,
+            "f1-score": 0.999722145040289,
+            "support": 1800.0
+        },
+        "Recon": {
+            "precision": 0.867199391171994,
+            "recall": 0.9290664492458215,
+            "f1-score": 0.8970675063963787,
+            "support": 2453.0
+        },
+        "Spoofing": {
+            "precision": 0.8947833775419982,
+            "recall": 0.8433333333333334,
+            "f1-score": 0.8682968682968683,
+            "support": 1200.0
+        },
+        "Web_Attack": {
+            "precision": 0.7391304347826086,
+            "recall": 0.7603833865814696,
+            "f1-score": 0.7496062992125985,
+            "support": 626.0
+        },
+        "accuracy": 0.9550548258826365,
+        "macro avg": {
+            "precision": 0.9083676451534818,
+            "recall": 0.8745682788514522,
+            "f1-score": 0.8886456962860156,
+            "support": 16598.0
+        },
+        "weighted avg": {
+            "precision": 0.9555653733531769,
+            "recall": 0.9550548258826365,
+            "f1-score": 0.9546834272341087,
+            "support": 16598.0
+        }
+    },
+    "confusion_matrix_csv": "results\\metrics\\confusion_matrix_XGBOOST_category.csv",
+    "normalized_confusion_matrix_csv": "results\\metrics\\confusion_matrix_normalized_XGBOOST_category.csv",
+    "class_metrics_csv": "results\\metrics\\class_metrics_XGBOOST_category.csv"
+}

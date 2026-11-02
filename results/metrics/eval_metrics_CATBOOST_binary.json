@@ -1,0 +1,42 @@
+{
+    "model_name": "CATBOOST",
+    "task_name": "binary",
+    "test_samples": 16598,
+    "accuracy": 0.9863,
+    "weighted_precision": 0.9855,
+    "weighted_recall": 0.9863,
+    "weighted_f1": 0.9856,
+    "macro_precision": 0.9353,
+    "macro_recall": 0.8565,
+    "macro_f1": 0.8917,
+    "classification_report": {
+        "Attack": {
+            "precision": 0.9894475481067659,
+            "recall": 0.9963745468183522,
+            "f1-score": 0.9928989659897844,
+            "support": 15998.0
+        },
+        "Benign": {
+            "precision": 0.8811475409836066,
+            "recall": 0.7166666666666667,
+            "f1-score": 0.7904411764705882,
+            "support": 600.0
+        },
+        "accuracy": 0.9862634052295457,
+        "macro avg": {
+            "precision": 0.9352975445451863,
+            "recall": 0.8565206067425095,
+            "f1-score": 0.8916700712301864,
+            "support": 16598.0
+        },
+        "weighted avg": {
+            "precision": 0.9855326183396919,
+            "recall": 0.9862634052295457,
+            "f1-score": 0.9855803327983447,
+            "support": 16598.0
+        }
+    },
+    "confusion_matrix_csv": "results\\metrics\\confusion_matrix_CATBOOST_binary.csv",
+    "normalized_confusion_matrix_csv": "results\\metrics\\confusion_matrix_normalized_CATBOOST_binary.csv",
+    "class_metrics_csv": "results\\metrics\\class_metrics_CATBOOST_binary.csv"
+}

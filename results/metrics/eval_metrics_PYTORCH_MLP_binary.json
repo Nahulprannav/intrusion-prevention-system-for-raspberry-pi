@@ -1,0 +1,42 @@
+{
+    "model_name": "PYTORCH_MLP",
+    "task_name": "binary",
+    "test_samples": 16598,
+    "accuracy": 0.9711,
+    "weighted_precision": 0.9661,
+    "weighted_recall": 0.9711,
+    "weighted_f1": 0.966,
+    "macro_precision": 0.8462,
+    "macro_recall": 0.6642,
+    "macro_f1": 0.7201,
+    "classification_report": {
+        "Attack": {
+            "precision": 0.9754886941601814,
+            "recall": 0.9950618827353419,
+            "f1-score": 0.9851780796484823,
+            "support": 15998.0
+        },
+        "Benign": {
+            "precision": 0.7168458781362007,
+            "recall": 0.3333333333333333,
+            "f1-score": 0.4550625711035267,
+            "support": 600.0
+        },
+        "accuracy": 0.9711411013375105,
+        "macro avg": {
+            "precision": 0.846167286148191,
+            "recall": 0.6641976080343376,
+            "f1-score": 0.7201203253760045,
+            "support": 16598.0
+        },
+        "weighted avg": {
+            "precision": 0.966139032175943,
+            "recall": 0.9711411013375105,
+            "f1-score": 0.9660149693263366,
+            "support": 16598.0
+        }
+    },
+    "confusion_matrix_csv": "results\\metrics\\confusion_matrix_PYTORCH_MLP_binary.csv",
+    "normalized_confusion_matrix_csv": "results\\metrics\\confusion_matrix_normalized_PYTORCH_MLP_binary.csv",
+    "class_metrics_csv": "results\\metrics\\class_metrics_PYTORCH_MLP_binary.csv"
+}

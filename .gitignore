@@ -1,0 +1,9 @@
+# Raw CICIoT2023 data is large; download it separately using the README instructions.
+CICIOT23/
+
+# Local caches and generated training logs.
+.tabpfn_cache/
+catboost_info/
+__pycache__/
+*.py[cod]
+results/logs/*.log
