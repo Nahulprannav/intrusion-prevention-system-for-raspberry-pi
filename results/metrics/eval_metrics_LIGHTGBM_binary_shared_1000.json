@@ -1,0 +1,44 @@
+{
+    "model_name": "LIGHTGBM",
+    "task_name": "binary_shared_1000",
+    "test_samples": 16598,
+    "accuracy": 0.9796,
+    "weighted_precision": 0.9779,
+    "weighted_recall": 0.9796,
+    "weighted_f1": 0.9773,
+    "macro_precision": 0.9192,
+    "macro_recall": 0.7608,
+    "macro_f1": 0.8202,
+    "classification_report": {
+        "Attack": {
+            "precision": 0.9824399260628466,
+            "recall": 0.9966870858857357,
+            "f1-score": 0.9895122253940672,
+            "support": 15998.0
+        },
+        "Benign": {
+            "precision": 0.8559782608695652,
+            "recall": 0.525,
+            "f1-score": 0.6508264462809917,
+            "support": 600.0
+        },
+        "accuracy": 0.9796361007350283,
+        "macro avg": {
+            "precision": 0.9192090934662058,
+            "recall": 0.7608435429428679,
+            "f1-score": 0.8201693358375295,
+            "support": 16598.0
+        },
+        "weighted avg": {
+            "precision": 0.9778684717240125,
+            "recall": 0.9796361007350283,
+            "f1-score": 0.9772690956514569,
+            "support": 16598.0
+        }
+    },
+    "confusion_matrix_csv": "results\\metrics\\confusion_matrix_LIGHTGBM_binary_shared_1000.csv",
+    "normalized_confusion_matrix_csv": "results\\metrics\\confusion_matrix_normalized_LIGHTGBM_binary_shared_1000.csv",
+    "class_metrics_csv": "results\\metrics\\class_metrics_LIGHTGBM_binary_shared_1000.csv",
+    "validation_weighted_f1": 0.9767,
+    "validation_macro_f1": 0.8136
+}

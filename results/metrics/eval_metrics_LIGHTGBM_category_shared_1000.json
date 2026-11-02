@@ -1,0 +1,80 @@
+{
+    "model_name": "LIGHTGBM",
+    "task_name": "category_shared_1000",
+    "test_samples": 16598,
+    "accuracy": 0.9205,
+    "weighted_precision": 0.9182,
+    "weighted_recall": 0.9205,
+    "weighted_f1": 0.9178,
+    "macro_precision": 0.8106,
+    "macro_recall": 0.7701,
+    "macro_f1": 0.7861,
+    "classification_report": {
+        "Benign": {
+            "precision": 0.7155963302752294,
+            "recall": 0.65,
+            "f1-score": 0.6812227074235808,
+            "support": 600.0
+        },
+        "Brute_Force": {
+            "precision": 0.6160714285714286,
+            "recall": 0.43260188087774293,
+            "f1-score": 0.5082872928176796,
+            "support": 319.0
+        },
+        "DDoS": {
+            "precision": 0.9994426640657657,
+            "recall": 0.99625,
+            "f1-score": 0.9978437782569382,
+            "support": 7200.0
+        },
+        "DoS": {
+            "precision": 0.9979140592407175,
+            "recall": 0.9966666666666667,
+            "f1-score": 0.997289972899729,
+            "support": 2400.0
+        },
+        "Mirai": {
+            "precision": 0.9960674157303371,
+            "recall": 0.985,
+            "f1-score": 0.9905027932960894,
+            "support": 1800.0
+        },
+        "Recon": {
+            "precision": 0.7835768963117606,
+            "recall": 0.9180595189563799,
+            "f1-score": 0.8455040360428008,
+            "support": 2453.0
+        },
+        "Spoofing": {
+            "precision": 0.7780725022104332,
+            "recall": 0.7333333333333333,
+            "f1-score": 0.7550407550407551,
+            "support": 1200.0
+        },
+        "Web_Attack": {
+            "precision": 0.597872340425532,
+            "recall": 0.4488817891373802,
+            "f1-score": 0.5127737226277372,
+            "support": 626.0
+        },
+        "accuracy": 0.9205325942884685,
+        "macro avg": {
+            "precision": 0.8105767046039005,
+            "recall": 0.7700991486214379,
+            "f1-score": 0.7860581323006637,
+            "support": 16598.0
+        },
+        "weighted avg": {
+            "precision": 0.9181742420807879,
+            "recall": 0.9205325942884685,
+            "f1-score": 0.9177503370304924,
+            "support": 16598.0
+        }
+    },
+    "confusion_matrix_csv": "results\\metrics\\confusion_matrix_LIGHTGBM_category_shared_1000.csv",
+    "normalized_confusion_matrix_csv": "results\\metrics\\confusion_matrix_normalized_LIGHTGBM_category_shared_1000.csv",
+    "class_metrics_csv": "results\\metrics\\class_metrics_LIGHTGBM_category_shared_1000.csv",
+    "validation_weighted_f1": 0.9191,
+    "validation_macro_f1": 0.7812
+}

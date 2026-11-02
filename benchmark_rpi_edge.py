@@ -1,7 +1,7 @@
 """
-Raspberry Pi Edge Benchmark & Tabular Foundation Model Evaluation.
+Raspberry Pi Edge Benchmark & Tabular Model Evaluation.
 Benchmarking models under Raspberry Pi resource constraints (ARM Cortex-A53, 1GB RAM):
-- Tabular Foundation Transformer (FT-Transformer)
+- FT-Transformer-style model trained from scratch
 - Stacking Ensemble (Paper Table I: 96.72%)
 - Voting Ensemble (Paper Table I: 95.98%)
 - Edge-Optimized Decision Tree (Paper Table II: 94.34%, 0.8ms, 2.3MB)
@@ -13,6 +13,8 @@ import time
 import joblib
 import numpy as np
 import pandas as pd
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
@@ -75,7 +77,7 @@ def measure_edge_metrics(model, X_test, y_test, num_timing_samples=50):
 
 def main():
     print("="*75, flush=True)
-    print("   RASPBERRY PI EDGE BENCHMARK & TABULAR FOUNDATION EVALUATION", flush=True)
+    print("   RASPBERRY PI EDGE BENCHMARK & TABULAR MODEL EVALUATION", flush=True)
     print("="*75, flush=True)
 
     os.makedirs(FIGURES_DIR, exist_ok=True)
@@ -110,7 +112,7 @@ def main():
 
     # Models to benchmark:
     models = {
-        "Tabular_Foundation_Transformer": TabularFoundationClassifier(
+        "FT_Transformer_From_Scratch": TabularFoundationClassifier(
             n_features=len(feature_cols), num_classes=len(class_names), epochs=5, d_token=32, n_heads=4
         ),
         "Stacking_Ensemble": create_stacking_ensemble(),

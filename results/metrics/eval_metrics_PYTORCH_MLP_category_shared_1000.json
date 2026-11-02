@@ -1,0 +1,80 @@
+{
+    "model_name": "PYTORCH_MLP",
+    "task_name": "category_shared_1000",
+    "test_samples": 16598,
+    "accuracy": 0.7279,
+    "weighted_precision": 0.7052,
+    "weighted_recall": 0.7279,
+    "weighted_f1": 0.7013,
+    "macro_precision": 0.6269,
+    "macro_recall": 0.5065,
+    "macro_f1": 0.5184,
+    "classification_report": {
+        "Benign": {
+            "precision": 0.39543726235741444,
+            "recall": 0.17333333333333334,
+            "f1-score": 0.2410196987253766,
+            "support": 600.0
+        },
+        "Brute_Force": {
+            "precision": 0.9384615384615385,
+            "recall": 0.19122257053291536,
+            "f1-score": 0.3177083333333333,
+            "support": 319.0
+        },
+        "DDoS": {
+            "precision": 0.8010335917312662,
+            "recall": 0.9041666666666667,
+            "f1-score": 0.8494813074965747,
+            "support": 7200.0
+        },
+        "DoS": {
+            "precision": 0.5902255639097744,
+            "recall": 0.3925,
+            "f1-score": 0.47147147147147145,
+            "support": 2400.0
+        },
+        "Mirai": {
+            "precision": 0.9938513135830073,
+            "recall": 0.9877777777777778,
+            "f1-score": 0.9908052382279187,
+            "support": 1800.0
+        },
+        "Recon": {
+            "precision": 0.5945865556216537,
+            "recall": 0.8149205055034652,
+            "f1-score": 0.6875322441960448,
+            "support": 2453.0
+        },
+        "Spoofing": {
+            "precision": 0.5174013921113689,
+            "recall": 0.5575,
+            "f1-score": 0.5367027677496992,
+            "support": 1200.0
+        },
+        "Web_Attack": {
+            "precision": 0.18446601941747573,
+            "recall": 0.03035143769968051,
+            "f1-score": 0.05212620027434842,
+            "support": 626.0
+        },
+        "accuracy": 0.7279190263887215,
+        "macro avg": {
+            "precision": 0.6269329046491874,
+            "recall": 0.5064715364392298,
+            "f1-score": 0.5183559076843458,
+            "support": 16598.0
+        },
+        "weighted avg": {
+            "precision": 0.7051708269737659,
+            "recall": 0.7279190263887215,
+            "f1-score": 0.7013132949493891,
+            "support": 16598.0
+        }
+    },
+    "confusion_matrix_csv": "results\\metrics\\confusion_matrix_PYTORCH_MLP_category_shared_1000.csv",
+    "normalized_confusion_matrix_csv": "results\\metrics\\confusion_matrix_normalized_PYTORCH_MLP_category_shared_1000.csv",
+    "class_metrics_csv": "results\\metrics\\class_metrics_PYTORCH_MLP_category_shared_1000.csv",
+    "validation_weighted_f1": 0.6978,
+    "validation_macro_f1": 0.5078
+}

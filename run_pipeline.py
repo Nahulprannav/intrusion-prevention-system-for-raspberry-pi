@@ -31,10 +31,10 @@ def main():
     run_eda(train_df, output_prefix="eda")
 
     # Step 3: Model Tournament Training & Evaluation (8 Macro Categories)
-    print("\n>>> STEP 3: TRAINING 6 ML/DL MODELS ON MACRO CATEGORIES (8-CLASS)...")
+    print("\n>>> STEP 3: TRAINING 7 ML/DL MODELS ON MACRO CATEGORIES (8-CLASS)...")
     train_pipeline(
         task="category",
-        selected_models=["LIGHTGBM", "XGBOOST", "CATBOOST", "RANDOM_FOREST", "EXTRA_TREES", "PYTORCH_MLP"],
+        selected_models=["LIGHTGBM", "XGBOOST", "CATBOOST", "RANDOM_FOREST", "EXTRA_TREES", "HIST_GRADIENT_BOOSTING", "PYTORCH_MLP"],
         force_resample=False
     )
 

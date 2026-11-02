@@ -31,20 +31,19 @@ def add_code(text):
     })
 
 # CELL 1: Header
-add_md('''# 🛡️ Raspberry Pi Edge Intrusion Prevention System (IPS) - CICIoT2023
-### Tabular Foundation Models, Edge Optimization & Real-Time Mitigation
-Based on the IEEE Research Paper: *"Lightweight ML-based Intrusion Detection Systems for IoT: A Comprehensive Analysis"* (IIIT Allahabad, 2025).
+add_md('''# Raspberry Pi Edge Intrusion Prevention System (IPS) - CICIoT2023
+### Tabular Model Evaluation, Edge Benchmarking & IPS Simulation
 
 ---
 ### Key Objectives & System Architecture:
 1. **Edge Hardware Constraint**: Tailored for resource-constrained IoT gateways (e.g., **Raspberry Pi 3B+ / 4 / 5**, ARM Cortex-A53 quad-core, 1GB RAM).
 2. **Two-Phase Architecture**:
    - **Phase 1**: Circular ring-buffer memory management (preventing RAM exhaustion) & feature extraction prioritizing **Inter-Arrival Time (IAT)**.
-   - **Phase 2**: Sub-millisecond threat classification (<1ms latency budget).
-3. **Active Prevention vs Passive Detection**:
-   - Unlike an IDS which only logs attacks, this **IPS** actively triggers automated Linux firewall mitigations (`iptables` / `nftables` DROP/REJECT rules, port quarantines, ARP cache freeze).
-4. **Tabular Foundation & Ensemble Models**:
-   - Evaluates **FT-Transformer (Tabular Foundation Model)**, **Stacking Ensemble**, **Voting Ensemble**, **Decision Tree (Edge Champion)**, and **Edge XGBoost / LightGBM**.
+   - **Phase 2**: Low-latency threat classification, to be measured on target hardware.
+3. **IPS Demonstration**:
+   - Generates proposed Linux firewall rules for inspection; the current demo does not apply rules to the host.
+4. **Tabular Model Comparison**:
+   - Evaluates tree ensembles, an FT-Transformer-style model trained from scratch, and an optional pretrained TabPFN comparison on a shared 1,000-row subset.
 ''')
 
 # CELL 2: Step 1 Setup
@@ -81,7 +80,7 @@ print(f"Train Shape: {train_df.shape} | Test Shape: {test_df.shape}")
 
 # CELL 4: Step 3 Edge Benchmark
 add_md('''## Step 3: Raspberry Pi Edge Benchmark (Accuracy vs Latency vs Size)
-We benchmark the Tabular Foundation Transformer, Stacking Ensemble, Voting Ensemble, and Edge Decision Tree.
+We benchmark an FT-Transformer-style model trained from scratch, stacking and voting ensembles, and compact tree models. Latency measured on this machine is not Raspberry Pi latency.
 ''')
 
 add_code('''# Run the benchmark engine
@@ -102,9 +101,9 @@ print("\\n=== 3. Key Feature Importance Ranking (Highlighting IAT) ===")
 display(Image(filename="results/figures/eval_rpi_feature_importance_iat.png", width=750))
 ''')
 
-# CELL 6: Step 5 Live IPS Demo
-add_md('''## Step 5: Live Demonstration of Autonomous Raspberry Pi IPS
-Simulate incoming network packet flows and watch the IPS classify threats and generate active Linux firewall rules in real-time.
+# CELL 6: Step 5 IPS Demo
+add_md('''## Step 5: IPS Demonstration
+Simulate incoming network packet flows and inspect proposed firewall-rule strings. This demo does not apply rules to the host.
 ''')
 
 add_code('''from src.raspberry_pi_ips import RaspberryPiIntrusionPreventionSystem
@@ -117,7 +116,7 @@ test_ips = ["192.168.1.110", "10.0.0.52", "172.16.10.4", "45.33.32.1", "192.168.
 test_ports = [80, 22, 443, 23, 8080]
 
 print("="*85)
-print("              RASPBERRY PI AUTONOMOUS IPS ACTIVE PREVENTIONS")
+print("              RASPBERRY PI IPS RULE-GENERATION DEMONSTRATION")
 print("="*85)
 for idx, (_, row) in enumerate(mock_flows.iterrows()):
     src_ip = test_ips[idx]

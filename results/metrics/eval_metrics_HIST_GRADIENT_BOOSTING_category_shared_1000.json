@@ -1,0 +1,80 @@
+{
+    "model_name": "HIST_GRADIENT_BOOSTING",
+    "task_name": "category_shared_1000",
+    "test_samples": 16598,
+    "accuracy": 0.9094,
+    "weighted_precision": 0.9057,
+    "weighted_recall": 0.9094,
+    "weighted_f1": 0.9062,
+    "macro_precision": 0.7626,
+    "macro_recall": 0.7411,
+    "macro_f1": 0.7493,
+    "classification_report": {
+        "Benign": {
+            "precision": 0.7192982456140351,
+            "recall": 0.6833333333333333,
+            "f1-score": 0.7008547008547008,
+            "support": 600.0
+        },
+        "Brute_Force": {
+            "precision": 0.41947565543071164,
+            "recall": 0.3510971786833856,
+            "f1-score": 0.3822525597269625,
+            "support": 319.0
+        },
+        "DDoS": {
+            "precision": 0.9995808885163453,
+            "recall": 0.99375,
+            "f1-score": 0.9966569160050146,
+            "support": 7200.0
+        },
+        "DoS": {
+            "precision": 0.9974968710888611,
+            "recall": 0.99625,
+            "f1-score": 0.9968730456535334,
+            "support": 2400.0
+        },
+        "Mirai": {
+            "precision": 0.9994285714285714,
+            "recall": 0.9716666666666667,
+            "f1-score": 0.9853521126760564,
+            "support": 1800.0
+        },
+        "Recon": {
+            "precision": 0.7759581881533101,
+            "recall": 0.9078679168365267,
+            "f1-score": 0.8367461957542739,
+            "support": 2453.0
+        },
+        "Spoofing": {
+            "precision": 0.7475982532751092,
+            "recall": 0.7133333333333334,
+            "f1-score": 0.7300639658848614,
+            "support": 1200.0
+        },
+        "Web_Attack": {
+            "precision": 0.4421768707482993,
+            "recall": 0.31150159744408945,
+            "f1-score": 0.3655107778819119,
+            "support": 626.0
+        },
+        "accuracy": 0.9094469213158212,
+        "macro avg": {
+            "precision": 0.7626266930319054,
+            "recall": 0.7411000032871669,
+            "f1-score": 0.7492887843046643,
+            "support": 16598.0
+        },
+        "weighted avg": {
+            "precision": 0.9056924965966884,
+            "recall": 0.9094469213158212,
+            "f1-score": 0.9062498625670774,
+            "support": 16598.0
+        }
+    },
+    "confusion_matrix_csv": "results\\metrics\\confusion_matrix_HIST_GRADIENT_BOOSTING_category_shared_1000.csv",
+    "normalized_confusion_matrix_csv": "results\\metrics\\confusion_matrix_normalized_HIST_GRADIENT_BOOSTING_category_shared_1000.csv",
+    "class_metrics_csv": "results\\metrics\\class_metrics_HIST_GRADIENT_BOOSTING_category_shared_1000.csv",
+    "validation_weighted_f1": 0.9053,
+    "validation_macro_f1": 0.7446
+}

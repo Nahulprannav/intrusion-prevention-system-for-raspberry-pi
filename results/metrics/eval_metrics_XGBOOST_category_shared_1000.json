@@ -1,0 +1,80 @@
+{
+    "model_name": "XGBOOST",
+    "task_name": "category_shared_1000",
+    "test_samples": 16598,
+    "accuracy": 0.9121,
+    "weighted_precision": 0.9081,
+    "weighted_recall": 0.9121,
+    "weighted_f1": 0.9079,
+    "macro_precision": 0.786,
+    "macro_recall": 0.7429,
+    "macro_f1": 0.7588,
+    "classification_report": {
+        "Benign": {
+            "precision": 0.7532956685499058,
+            "recall": 0.6666666666666666,
+            "f1-score": 0.7073386383731212,
+            "support": 600.0
+        },
+        "Brute_Force": {
+            "precision": 0.49282296650717705,
+            "recall": 0.322884012539185,
+            "f1-score": 0.39015151515151514,
+            "support": 319.0
+        },
+        "DDoS": {
+            "precision": 0.9944544572300014,
+            "recall": 0.99625,
+            "f1-score": 0.9953514188579754,
+            "support": 7200.0
+        },
+        "DoS": {
+            "precision": 1.0,
+            "recall": 0.9941666666666666,
+            "f1-score": 0.9970748015043878,
+            "support": 2400.0
+        },
+        "Mirai": {
+            "precision": 0.9988610478359908,
+            "recall": 0.9744444444444444,
+            "f1-score": 0.9865016872890888,
+            "support": 1800.0
+        },
+        "Recon": {
+            "precision": 0.7538200339558574,
+            "recall": 0.9050142682429678,
+            "f1-score": 0.8225268618006669,
+            "support": 2453.0
+        },
+        "Spoofing": {
+            "precision": 0.7769028871391076,
+            "recall": 0.74,
+            "f1-score": 0.7580025608194623,
+            "support": 1200.0
+        },
+        "Web_Attack": {
+            "precision": 0.5180722891566265,
+            "recall": 0.34345047923322686,
+            "f1-score": 0.41306436119116235,
+            "support": 626.0
+        },
+        "accuracy": 0.9120978431136282,
+        "macro avg": {
+            "precision": 0.7860286687968333,
+            "recall": 0.7428595672241447,
+            "f1-score": 0.7587514806234225,
+            "support": 16598.0
+        },
+        "weighted avg": {
+            "precision": 0.9081170723267394,
+            "recall": 0.9120978431136282,
+            "f1-score": 0.9079355372907324,
+            "support": 16598.0
+        }
+    },
+    "confusion_matrix_csv": "results\\metrics\\confusion_matrix_XGBOOST_category_shared_1000.csv",
+    "normalized_confusion_matrix_csv": "results\\metrics\\confusion_matrix_normalized_XGBOOST_category_shared_1000.csv",
+    "class_metrics_csv": "results\\metrics\\class_metrics_XGBOOST_category_shared_1000.csv",
+    "validation_weighted_f1": 0.9089,
+    "validation_macro_f1": 0.7576
+}

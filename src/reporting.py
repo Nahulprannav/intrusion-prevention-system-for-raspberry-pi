@@ -30,7 +30,7 @@ def generate_evaluation_report():
     report = [
         "# Model Evaluation Report",
         "",
-        "All reported scores are measured on the held-out test split after fitting each model on the training split.",
+        "All reported test scores are measured on the held-out test split after fitting each model on the training split. The saved champion is selected by validation macro F1, not test scores, to avoid letting majority classes dominate model choice.",
         "Precision, recall, and F1 are shown as both weighted and macro averages; per-class results are included below.",
         "Confusion matrices include raw counts and row-normalized rates.",
         ""
@@ -46,18 +46,23 @@ def generate_evaluation_report():
         report.append("No evaluation JSON files were found. Run `python train_and_evaluate.py` first.")
 
     for task, models in sorted(task_metrics.items()):
-        models.sort(key=lambda result: result["weighted_f1"], reverse=True)
+        models.sort(
+            key=lambda result: result.get("validation_macro_f1", result["macro_f1"]),
+            reverse=True
+        )
         report.extend([
             f"## {task.title()} classification",
             "",
-            "| Model | Accuracy | Weighted precision | Weighted recall | Weighted F1 | Macro precision | Macro recall | Macro F1 | Train time (s) |",
-            "|---|---:|---:|---:|---:|---:|---:|---:|---:|"
+            "| Model | Validation weighted F1 | Validation macro F1 | Accuracy | Weighted precision | Weighted recall | Weighted F1 | Macro precision | Macro recall | Macro F1 | Train time (s) |",
+            "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|"
         ])
         for metrics in models:
             model_name = metrics["model_name"]
             train_time = leaderboard_times.get((task, model_name), "n/a") or "n/a"
             report.append(
-                f"| {model_name} | {_percentage(metrics['accuracy'])} "
+                f"| {model_name} | {_percentage(metrics['validation_weighted_f1']) if 'validation_weighted_f1' in metrics else 'n/a'} "
+                f"| {_percentage(metrics['validation_macro_f1']) if 'validation_macro_f1' in metrics else 'n/a'} "
+                f"| {_percentage(metrics['accuracy'])} "
                 f"| {_percentage(metrics['weighted_precision'])} "
                 f"| {_percentage(metrics['weighted_recall'])} "
                 f"| {_percentage(metrics['weighted_f1'])} "

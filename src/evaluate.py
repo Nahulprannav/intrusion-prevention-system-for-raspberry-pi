@@ -1,7 +1,10 @@
 import os
 import json
+from typing import Optional
 import numpy as np
 import pandas as pd
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from sklearn.metrics import (
     accuracy_score, precision_score, recall_score, f1_score,
@@ -16,7 +19,8 @@ def evaluate_model(
     class_names: list,
     model_name: str = "Model",
     task_name: str = "8_categories",
-    feature_names: list = None
+    feature_names: Optional[list] = None,
+    validation_metrics: Optional[dict] = None
 ) -> dict:
     """
     Computes comprehensive evaluation metrics and generates high-resolution figures.
@@ -192,7 +196,8 @@ def evaluate_model(
         "classification_report": clf_report,
         "confusion_matrix_csv": os.path.relpath(cm_path),
         "normalized_confusion_matrix_csv": os.path.relpath(cm_norm_path),
-        "class_metrics_csv": os.path.relpath(class_metrics_path)
+        "class_metrics_csv": os.path.relpath(class_metrics_path),
+        **(validation_metrics or {})
     }
 
     json_path = os.path.join(METRICS_DIR, f"eval_metrics_{model_name}_{task_name}.json")

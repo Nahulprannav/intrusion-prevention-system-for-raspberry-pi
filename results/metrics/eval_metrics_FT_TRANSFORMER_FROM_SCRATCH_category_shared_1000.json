@@ -1,0 +1,80 @@
+{
+    "model_name": "FT_TRANSFORMER_FROM_SCRATCH",
+    "task_name": "category_shared_1000",
+    "test_samples": 16598,
+    "accuracy": 0.2987,
+    "weighted_precision": 0.3365,
+    "weighted_recall": 0.2987,
+    "weighted_f1": 0.2194,
+    "macro_precision": 0.1491,
+    "macro_recall": 0.2502,
+    "macro_f1": 0.139,
+    "classification_report": {
+        "Benign": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 600.0
+        },
+        "Brute_Force": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 319.0
+        },
+        "DDoS": {
+            "precision": 0.5852713178294574,
+            "recall": 0.14680555555555555,
+            "f1-score": 0.2347324006218077,
+            "support": 7200.0
+        },
+        "DoS": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 2400.0
+        },
+        "Mirai": {
+            "precision": 0.18191986983933292,
+            "recall": 0.9938888888888889,
+            "f1-score": 0.30754684545298266,
+            "support": 1800.0
+        },
+        "Recon": {
+            "precision": 0.4257765227914482,
+            "recall": 0.8605788830004076,
+            "f1-score": 0.5696936985562002,
+            "support": 2453.0
+        },
+        "Spoofing": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 1200.0
+        },
+        "Web_Attack": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 626.0
+        },
+        "accuracy": 0.29865043981202555,
+        "macro avg": {
+            "precision": 0.14912096380752982,
+            "recall": 0.2501591659306065,
+            "f1-score": 0.1389966180788738,
+            "support": 16598.0
+        },
+        "weighted avg": {
+            "precision": 0.33653687579770547,
+            "recall": 0.29865043981202555,
+            "f1-score": 0.21937078255517192,
+            "support": 16598.0
+        }
+    },
+    "confusion_matrix_csv": "results\\metrics\\confusion_matrix_FT_TRANSFORMER_FROM_SCRATCH_category_shared_1000.csv",
+    "normalized_confusion_matrix_csv": "results\\metrics\\confusion_matrix_normalized_FT_TRANSFORMER_FROM_SCRATCH_category_shared_1000.csv",
+    "class_metrics_csv": "results\\metrics\\class_metrics_FT_TRANSFORMER_FROM_SCRATCH_category_shared_1000.csv",
+    "validation_weighted_f1": 0.221,
+    "validation_macro_f1": 0.1399
+}

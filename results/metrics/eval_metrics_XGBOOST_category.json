@@ -74,5 +74,7 @@
     },
     "confusion_matrix_csv": "results\\metrics\\confusion_matrix_XGBOOST_category.csv",
     "normalized_confusion_matrix_csv": "results\\metrics\\confusion_matrix_normalized_XGBOOST_category.csv",
-    "class_metrics_csv": "results\\metrics\\class_metrics_XGBOOST_category.csv"
+    "class_metrics_csv": "results\\metrics\\class_metrics_XGBOOST_category.csv",
+    "validation_weighted_f1": 0.9551,
+    "validation_macro_f1": 0.8882
 }

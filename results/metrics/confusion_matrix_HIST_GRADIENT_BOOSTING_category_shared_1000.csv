@@ -1,0 +1,9 @@
+Actual,Benign,Brute_Force,DDoS,DoS,Mirai,Recon,Spoofing,Web_Attack
+Benign,410,23,0,0,0,67,67,33
+Brute_Force,22,112,0,0,0,116,17,52
+DDoS,0,0,7155,6,1,30,8,0
+DoS,0,0,3,2391,0,5,0,1
+Mirai,0,0,0,0,1749,43,8,0
+Recon,67,42,0,0,0,2227,56,61
+Spoofing,55,41,0,0,0,149,856,99
+Web_Attack,16,49,0,0,0,233,133,195

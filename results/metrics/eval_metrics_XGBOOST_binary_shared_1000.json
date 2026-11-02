@@ -1,0 +1,44 @@
+{
+    "model_name": "XGBOOST",
+    "task_name": "binary_shared_1000",
+    "test_samples": 16598,
+    "accuracy": 0.9778,
+    "weighted_precision": 0.9756,
+    "weighted_recall": 0.9778,
+    "weighted_f1": 0.9747,
+    "macro_precision": 0.9136,
+    "macro_recall": 0.7334,
+    "macro_f1": 0.7965,
+    "classification_report": {
+        "Attack": {
+            "precision": 0.980448816477098,
+            "recall": 0.9968121015126891,
+            "f1-score": 0.9885627498992654,
+            "support": 15998.0
+        },
+        "Benign": {
+            "precision": 0.8468468468468469,
+            "recall": 0.47,
+            "f1-score": 0.6045016077170418,
+            "support": 600.0
+        },
+        "accuracy": 0.977768405832028,
+        "macro avg": {
+            "precision": 0.9136478316619725,
+            "recall": 0.7334060507563445,
+            "f1-score": 0.7965321788081536,
+            "support": 16598.0
+        },
+        "weighted avg": {
+            "precision": 0.975619247747242,
+            "recall": 0.977768405832028,
+            "f1-score": 0.9746793491696996,
+            "support": 16598.0
+        }
+    },
+    "confusion_matrix_csv": "results\\metrics\\confusion_matrix_XGBOOST_binary_shared_1000.csv",
+    "normalized_confusion_matrix_csv": "results\\metrics\\confusion_matrix_normalized_XGBOOST_binary_shared_1000.csv",
+    "class_metrics_csv": "results\\metrics\\class_metrics_XGBOOST_binary_shared_1000.csv",
+    "validation_weighted_f1": 0.9729,
+    "validation_macro_f1": 0.7794
+}

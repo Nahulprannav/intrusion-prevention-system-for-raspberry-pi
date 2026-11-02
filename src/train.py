@@ -1,8 +1,11 @@
 import os
 import time
 import joblib
+from typing import Optional
 import numpy as np
 import pandas as pd
+from sklearn.metrics import f1_score
+from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from src.config import (
     SAVED_MODELS_DIR, FEATURE_COLUMNS, LABEL_COLUMN,
@@ -15,8 +18,11 @@ from src.reporting import generate_evaluation_report
 
 def train_pipeline(
     task: str = "category",
-    selected_models: list = ["LIGHTGBM", "XGBOOST", "CATBOOST", "RANDOM_FOREST", "EXTRA_TREES", "PYTORCH_MLP"],
-    force_resample: bool = False
+    selected_models: list = ["LIGHTGBM", "XGBOOST", "CATBOOST", "RANDOM_FOREST", "EXTRA_TREES", "HIST_GRADIENT_BOOSTING", "PYTORCH_MLP"],
+    force_resample: bool = False,
+    max_train_samples: Optional[int] = None,
+    experiment_suffix: str = "",
+    save_champion: bool = True
 ):
     """
     End-to-End Training and Evaluation Pipeline.
@@ -45,8 +51,24 @@ def train_pipeline(
     y_val = label_encoder.transform(y_val_raw)
     y_test = label_encoder.transform(y_test_raw)
     class_names = list(label_encoder.classes_)
-
     num_classes = len(class_names)
+
+    if max_train_samples is not None:
+        if max_train_samples < num_classes or max_train_samples > len(y_train):
+            raise ValueError(
+                f"max_train_samples must be between {num_classes} and "
+                f"{len(y_train)}, got {max_train_samples}."
+            )
+        if max_train_samples < len(y_train):
+            X_train_raw, _, y_train, _ = train_test_split(
+                X_train_raw,
+                y_train,
+                train_size=max_train_samples,
+                random_state=42,
+                stratify=y_train
+            )
+            print(f"[Setup] Stratified training subset: {len(X_train_raw):,} records")
+
     num_features = len(feature_cols)
     print(f"\n[Setup] Features: {num_features} | Target Classes: {num_classes} -> {class_names}")
     print(f"[Setup] Train records: {len(X_train_raw):,} | Val: {len(X_val_raw):,} | Test: {len(X_test_raw):,}")
@@ -62,6 +84,7 @@ def train_pipeline(
     os.makedirs(SAVED_MODELS_DIR, exist_ok=True)
     tournament_results = []
     trained_models = {}
+    evaluation_task_name = f"{task}_{experiment_suffix}" if experiment_suffix else task
 
     for model_name in selected_models:
         print(f"\n>>> Training Model: {model_name} ...")
@@ -92,20 +115,37 @@ def train_pipeline(
             elif model_name.upper() in ["PYTORCH_MLP", "FASTAI", "NEURAL_NET"]:
                 model.fit(X_train, y_train, X_val, y_val)
             else:
-                model.fit(X_train, y_train)
+                if model_name.upper() == "TABPFN":
+                    model.fit(X_train_raw, y_train)
+                else:
+                    model.fit(X_train, y_train)
 
             train_time = round(time.time() - t_start, 2)
             print(f"  Completed training {model_name} in {train_time} seconds.")
 
+            X_val_model = X_val_raw if model_name.upper() == "TABPFN" else X_val
+            y_val_pred = model.predict(X_val_model)
+            validation_weighted_f1 = f1_score(
+                y_val, y_val_pred, average="weighted", zero_division=0
+            )
+            validation_macro_f1 = f1_score(
+                y_val, y_val_pred, average="macro", zero_division=0
+            )
+            validation_metrics = {
+                "validation_weighted_f1": round(float(validation_weighted_f1), 4),
+                "validation_macro_f1": round(float(validation_macro_f1), 4)
+            }
+
             # Evaluate on Test Set
             eval_metrics = evaluate_model(
                 model=model,
-                X_test=X_test,
+                X_test=X_test_raw if model_name.upper() == "TABPFN" else X_test,
                 y_test=y_test,
                 class_names=class_names,
                 model_name=model_name,
-                task_name=task,
-                feature_names=feature_cols
+                task_name=evaluation_task_name,
+                feature_names=feature_cols,
+                validation_metrics=validation_metrics
             )
             eval_metrics['train_time_sec'] = train_time
             tournament_results.append(eval_metrics)
@@ -115,46 +155,47 @@ def train_pipeline(
             print(f"[ERROR] Failed to train {model_name}: {str(e)}")
 
     # 6. Generate Comparative Leaderboard Chart
-    leaderboard_chart = plot_model_comparison(tournament_results, task_name=task)
+    leaderboard_chart = plot_model_comparison(tournament_results, task_name=evaluation_task_name)
 
     # 7. Identify Champion Model & Save Artifacts
     if tournament_results:
-        best_entry = max(tournament_results, key=lambda x: x['weighted_f1'])
+        best_entry = max(tournament_results, key=lambda x: x['validation_macro_f1'])
         best_model_name = best_entry['model_name']
         champion_model = trained_models[best_model_name]
 
         print("\n" + "="*70)
-        print(f"   TOURNAMENT CHAMPION: {best_model_name}")
+        print(f"   VALIDATION CHAMPION: {best_model_name}")
+        print(f"   Validation macro F1: {best_entry['validation_macro_f1']*100:.2f}%")
         print(f"   Accuracy: {best_entry['accuracy']*100:.2f}% | Weighted F1: {best_entry['weighted_f1']*100:.2f}% | Macro F1: {best_entry['macro_f1']*100:.2f}%")
         print("="*70)
 
-        # Save Artifacts
-        artifacts = {
-            'model': champion_model,
-            'scaler': scaler,
-            'label_encoder': label_encoder,
-            'feature_cols': feature_cols,
-            'class_names': class_names,
-            'task': task,
-            'best_model_name': best_model_name,
-            'metrics': best_entry
-        }
-        artifact_path = os.path.join(SAVED_MODELS_DIR, f"champion_{task}_pipeline.joblib")
-        joblib.dump(artifacts, artifact_path)
-        print(f"[Artifact Saved] Champion model pipeline -> {artifact_path}")
+        if save_champion:
+            artifacts = {
+                'model': champion_model,
+                'scaler': scaler,
+                'label_encoder': label_encoder,
+                'feature_cols': feature_cols,
+                'class_names': class_names,
+                'task': task,
+                'best_model_name': best_model_name,
+                'metrics': best_entry
+            }
+            artifact_path = os.path.join(SAVED_MODELS_DIR, f"champion_{task}_pipeline.joblib")
+            joblib.dump(artifacts, artifact_path)
+            print(f"[Artifact Saved] Champion model pipeline -> {artifact_path}")
 
         # Also save tournament summary table
         leaderboard_df = pd.DataFrame(tournament_results)[[
             'model_name', 'accuracy', 'weighted_precision', 'weighted_recall',
             'weighted_f1', 'macro_precision', 'macro_recall', 'macro_f1',
-            'train_time_sec'
+            'validation_weighted_f1', 'validation_macro_f1', 'train_time_sec'
         ]]
         leaderboard_df.columns = [
             'Model', 'Accuracy', 'Weighted_Precision', 'Weighted_Recall',
             'Weighted_F1', 'Macro_Precision', 'Macro_Recall', 'Macro_F1',
-            'Training_Time_s'
+            'Validation_Weighted_F1', 'Validation_Macro_F1', 'Training_Time_s'
         ]
-        leaderboard_csv = os.path.join(METRICS_DIR, f"leaderboard_{task}.csv")
+        leaderboard_csv = os.path.join(METRICS_DIR, f"leaderboard_{evaluation_task_name}.csv")
         leaderboard_df.to_csv(leaderboard_csv, index=False)
         print(f"[Leaderboard Saved] -> {leaderboard_csv}")
         print("\nLeaderboard Table:")

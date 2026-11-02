@@ -1,7 +1,7 @@
 """
 Model Training and Tournament Evaluation Runner for CICIoT2023.
-Trains multiple cutting-edge algorithms (LightGBM, XGBoost, CatBoost, Random Forest, PyTorch MLP),
-generates confusion matrices, ROC/PR curves, feature importances, and exports the champion model.
+Trains selected tabular models, generates confusion matrices and per-class metrics,
+and exports the validation-selected champion model.
 """
 import os
 import sys
@@ -23,7 +23,7 @@ def main():
     parser.add_argument(
         "--models",
         nargs="+",
-        default=["LIGHTGBM", "XGBOOST", "CATBOOST", "RANDOM_FOREST", "EXTRA_TREES", "PYTORCH_MLP"],
+        default=["LIGHTGBM", "XGBOOST", "CATBOOST", "RANDOM_FOREST", "EXTRA_TREES", "HIST_GRADIENT_BOOSTING", "PYTORCH_MLP"],
         help="List of models to train and compare in the tournament"
     )
     parser.add_argument(

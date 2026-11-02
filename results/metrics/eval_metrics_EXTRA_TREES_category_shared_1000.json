@@ -1,0 +1,80 @@
+{
+    "model_name": "EXTRA_TREES",
+    "task_name": "category_shared_1000",
+    "test_samples": 16598,
+    "accuracy": 0.8733,
+    "weighted_precision": 0.8715,
+    "weighted_recall": 0.8733,
+    "weighted_f1": 0.8655,
+    "macro_precision": 0.7659,
+    "macro_recall": 0.6625,
+    "macro_f1": 0.6843,
+    "classification_report": {
+        "Benign": {
+            "precision": 0.4369369369369369,
+            "recall": 0.3233333333333333,
+            "f1-score": 0.3716475095785441,
+            "support": 600.0
+        },
+        "Brute_Force": {
+            "precision": 0.8051948051948052,
+            "recall": 0.19435736677115986,
+            "f1-score": 0.31313131313131315,
+            "support": 319.0
+        },
+        "DDoS": {
+            "precision": 0.9740939782279179,
+            "recall": 0.9818055555555556,
+            "f1-score": 0.9779345645707962,
+            "support": 7200.0
+        },
+        "DoS": {
+            "precision": 0.9538396978598406,
+            "recall": 0.9470833333333334,
+            "f1-score": 0.9504495086765629,
+            "support": 2400.0
+        },
+        "Mirai": {
+            "precision": 0.9994391475042064,
+            "recall": 0.99,
+            "f1-score": 0.9946971811331287,
+            "support": 1800.0
+        },
+        "Recon": {
+            "precision": 0.6807765754296626,
+            "recall": 0.8719934773746433,
+            "f1-score": 0.7646112600536193,
+            "support": 2453.0
+        },
+        "Spoofing": {
+            "precision": 0.6523266022827041,
+            "recall": 0.6191666666666666,
+            "f1-score": 0.6353142368533561,
+            "support": 1200.0
+        },
+        "Web_Attack": {
+            "precision": 0.6246648793565683,
+            "recall": 0.3722044728434505,
+            "f1-score": 0.46646646646646645,
+            "support": 626.0
+        },
+        "accuracy": 0.8732979877093626,
+        "macro avg": {
+            "precision": 0.7659090778490802,
+            "recall": 0.6624930257347679,
+            "f1-score": 0.6842815050579734,
+            "support": 16598.0
+        },
+        "weighted avg": {
+            "precision": 0.8714591375694011,
+            "recall": 0.8732979877093626,
+            "f1-score": 0.8654968381463245,
+            "support": 16598.0
+        }
+    },
+    "confusion_matrix_csv": "results\\metrics\\confusion_matrix_EXTRA_TREES_category_shared_1000.csv",
+    "normalized_confusion_matrix_csv": "results\\metrics\\confusion_matrix_normalized_EXTRA_TREES_category_shared_1000.csv",
+    "class_metrics_csv": "results\\metrics\\class_metrics_EXTRA_TREES_category_shared_1000.csv",
+    "validation_weighted_f1": 0.866,
+    "validation_macro_f1": 0.6804
+}

@@ -4,10 +4,15 @@ import numpy as np
 import torch
 import torch.nn as nn
 from torch.utils.data import TensorDataset, DataLoader
-from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier
+from sklearn.ensemble import (
+    ExtraTreesClassifier,
+    HistGradientBoostingClassifier,
+    RandomForestClassifier
+)
 import lightgbm as lgb
 import xgboost as xgb
 import catboost as cb
+from src.foundation_models import TabularFoundationClassifier
 
 # ================= PyTorch Deep Learning MLP Model =================
 class TabularMLP(nn.Module):
@@ -144,6 +149,36 @@ def get_model(model_name: str, num_features: int, num_classes: int, random_state
             random_state=random_state,
             n_jobs=-1
         )
+    elif model_name in {"HIST_GRADIENT_BOOSTING", "HISTGB"}:
+        return HistGradientBoostingClassifier(
+            max_iter=150,
+            learning_rate=0.1,
+            max_leaf_nodes=31,
+            l2_regularization=1.0,
+            random_state=random_state
+        )
+    elif model_name == "TABPFN":
+        try:
+            from tabpfn import TabPFNClassifier
+            from tabpfn.constants import ModelVersion
+        except ImportError as exc:
+            raise ImportError(
+                "TABPFN requires the optional package. Install it with "
+                "'python -m pip install -r requirements-tabular-foundation.txt'."
+            ) from exc
+        return TabPFNClassifier.create_default_for_version(
+            ModelVersion.V2,
+            device="cpu",
+            n_estimators=4,
+            show_progress_bar=False,
+            random_state=random_state
+        )
+    elif model_name == "FT_TRANSFORMER_FROM_SCRATCH":
+        return TabularFoundationClassifier(
+            n_features=num_features,
+            num_classes=num_classes,
+            epochs=5
+        )
     elif model_name == "PYTORCH_MLP" or model_name == "FASTAI" or model_name == "NEURAL_NET":
         return PyTorchTabularClassifier(
             input_dim=num_features,
@@ -153,4 +188,8 @@ def get_model(model_name: str, num_features: int, num_classes: int, random_state
             lr=0.002
         )
     else:
-        raise ValueError(f"Unknown model name: {model_name}. Supported: LIGHTGBM, XGBOOST, CATBOOST, RANDOM_FOREST, EXTRA_TREES, PYTORCH_MLP")
+        raise ValueError(
+            f"Unknown model name: {model_name}. Supported: LIGHTGBM, XGBOOST, "
+            "CATBOOST, RANDOM_FOREST, EXTRA_TREES, HIST_GRADIENT_BOOSTING, "
+            "PYTORCH_MLP, FT_TRANSFORMER_FROM_SCRATCH, TABPFN"
+        )

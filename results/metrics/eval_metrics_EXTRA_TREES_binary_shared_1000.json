@@ -1,0 +1,44 @@
+{
+    "model_name": "EXTRA_TREES",
+    "task_name": "binary_shared_1000",
+    "test_samples": 16598,
+    "accuracy": 0.9692,
+    "weighted_precision": 0.9636,
+    "weighted_recall": 0.9692,
+    "weighted_f1": 0.9608,
+    "macro_precision": 0.8636,
+    "macro_recall": 0.607,
+    "macro_f1": 0.6605,
+    "classification_report": {
+        "Attack": {
+            "precision": 0.9713868257640327,
+            "recall": 0.9973746718339792,
+            "f1-score": 0.9842092277325438,
+            "support": 15998.0
+        },
+        "Benign": {
+            "precision": 0.7558139534883721,
+            "recall": 0.21666666666666667,
+            "f1-score": 0.33678756476683935,
+            "support": 600.0
+        },
+        "accuracy": 0.9691529099891553,
+        "macro avg": {
+            "precision": 0.8636003896262023,
+            "recall": 0.6070206692503229,
+            "f1-score": 0.6604983962496915,
+            "support": 16598.0
+        },
+        "weighted avg": {
+            "precision": 0.9635940963167862,
+            "recall": 0.9691529099891553,
+            "f1-score": 0.9608056250226136,
+            "support": 16598.0
+        }
+    },
+    "confusion_matrix_csv": "results\\metrics\\confusion_matrix_EXTRA_TREES_binary_shared_1000.csv",
+    "normalized_confusion_matrix_csv": "results\\metrics\\confusion_matrix_normalized_EXTRA_TREES_binary_shared_1000.csv",
+    "class_metrics_csv": "results\\metrics\\class_metrics_EXTRA_TREES_binary_shared_1000.csv",
+    "validation_weighted_f1": 0.9587,
+    "validation_macro_f1": 0.6387
+}

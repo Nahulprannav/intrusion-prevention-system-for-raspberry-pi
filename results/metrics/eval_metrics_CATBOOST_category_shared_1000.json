@@ -1,0 +1,80 @@
+{
+    "model_name": "CATBOOST",
+    "task_name": "category_shared_1000",
+    "test_samples": 16598,
+    "accuracy": 0.9005,
+    "weighted_precision": 0.9017,
+    "weighted_recall": 0.9005,
+    "weighted_f1": 0.892,
+    "macro_precision": 0.8328,
+    "macro_recall": 0.708,
+    "macro_f1": 0.7301,
+    "classification_report": {
+        "Benign": {
+            "precision": 0.7003610108303249,
+            "recall": 0.6466666666666666,
+            "f1-score": 0.6724436741767764,
+            "support": 600.0
+        },
+        "Brute_Force": {
+            "precision": 0.9714285714285714,
+            "recall": 0.21316614420062696,
+            "f1-score": 0.3496143958868895,
+            "support": 319.0
+        },
+        "DDoS": {
+            "precision": 0.9869037772263579,
+            "recall": 0.9943055555555556,
+            "f1-score": 0.9905908399059083,
+            "support": 7200.0
+        },
+        "DoS": {
+            "precision": 0.9904445367677607,
+            "recall": 0.9933333333333333,
+            "f1-score": 0.9918868317037653,
+            "support": 2400.0
+        },
+        "Mirai": {
+            "precision": 0.9988751406074241,
+            "recall": 0.9866666666666667,
+            "f1-score": 0.9927333705980995,
+            "support": 1800.0
+        },
+        "Recon": {
+            "precision": 0.6929657794676806,
+            "recall": 0.8915613534447615,
+            "f1-score": 0.7798181494027456,
+            "support": 2453.0
+        },
+        "Spoofing": {
+            "precision": 0.7475202885482417,
+            "recall": 0.6908333333333333,
+            "f1-score": 0.7180597661325249,
+            "support": 1200.0
+        },
+        "Web_Attack": {
+            "precision": 0.5740740740740741,
+            "recall": 0.2476038338658147,
+            "f1-score": 0.34598214285714285,
+            "support": 626.0
+        },
+        "accuracy": 0.900469936136884,
+        "macro avg": {
+            "precision": 0.8328216473688044,
+            "recall": 0.7080171108833448,
+            "f1-score": 0.7301411463329815,
+            "support": 16598.0
+        },
+        "weighted avg": {
+            "precision": 0.9017406574172887,
+            "recall": 0.900469936136884,
+            "f1-score": 0.892025916890871,
+            "support": 16598.0
+        }
+    },
+    "confusion_matrix_csv": "results\\metrics\\confusion_matrix_CATBOOST_category_shared_1000.csv",
+    "normalized_confusion_matrix_csv": "results\\metrics\\confusion_matrix_normalized_CATBOOST_category_shared_1000.csv",
+    "class_metrics_csv": "results\\metrics\\class_metrics_CATBOOST_category_shared_1000.csv",
+    "validation_weighted_f1": 0.8897,
+    "validation_macro_f1": 0.7183
+}

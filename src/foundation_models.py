@@ -12,7 +12,7 @@ import xgboost as xgb
 import lightgbm as lgb
 
 # =====================================================================
-# 1. TABULAR FOUNDATION ARCHITECTURE: FT-TRANSFORMER (PyTorch)
+# 1. FT-TRANSFORMER-STYLE TABULAR MODEL (TRAINED FROM SCRATCH)
 # Feature Tokenizer + Multi-Head Self-Attention for Tabular Data
 # =====================================================================
 class NumericalFeatureTokenizer(nn.Module):
@@ -32,7 +32,7 @@ class NumericalFeatureTokenizer(nn.Module):
 
 class TabularTransformer(nn.Module):
     """
-    Tabular Foundation Transformer Model (FT-Transformer style).
+    FT-Transformer-style model trained from scratch on task-specific data.
     Applies Multi-Head Attention across tabular features.
     """
     def __init__(self, n_features: int, num_classes: int, d_token: int = 32, n_heads: int = 4, n_blocks: int = 2, dropout: float = 0.15):
@@ -72,7 +72,7 @@ class TabularTransformer(nn.Module):
 
 class TabularFoundationClassifier(BaseEstimator, ClassifierMixin):
     """
-    Scikit-Learn compliant Tabular Foundation Transformer Classifier.
+    Scikit-Learn compliant FT-Transformer-style classifier trained from scratch.
     """
     def __init__(self, n_features: int = 46, num_classes: int = 8, d_token: int = 32, n_heads: int = 4, n_blocks: int = 2, epochs: int = 5, batch_size: int = 256, lr: float = 0.001):
         self.n_features = n_features
@@ -94,7 +94,7 @@ class TabularFoundationClassifier(BaseEstimator, ClassifierMixin):
         dataset = TensorDataset(torch.tensor(X, dtype=torch.float32), torch.tensor(y, dtype=torch.long))
         loader = DataLoader(dataset, batch_size=self.batch_size, shuffle=True)
 
-        print(f"\n[Tabular Foundation Transformer] Training on {self.device} for {self.epochs} epochs...", flush=True)
+        print(f"\n[FT-Transformer from scratch] Training on {self.device} for {self.epochs} epochs...", flush=True)
         for epoch in range(1, self.epochs + 1):
             total_loss = 0.0
             correct = 0
